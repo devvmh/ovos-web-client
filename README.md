@@ -12,18 +12,19 @@ First, set up your .env file to populate environment variables:
 
     cp example.env .env
     vim .env # edit the values
+    source .env
 
 Next build the frontend Javascript code:
 
-    Not ready yet!
+    cd client
+    npm install
+    npm run build
 
-Now in a separate terminal, start the Flask web server
+Now build the Flask web server
 
-    cd server
-    source ../.env
+    cd ../server
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
-    flask run
 
-Now visit http://localhost:5000 to view the server.
+Now run the server with `flask run` and visit http://localhost:5000 to view the server.
