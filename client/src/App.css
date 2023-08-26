@@ -1,9 +1,4 @@
-div {
-  border: 1px solid black;
-}
-
 .App {
-  text-align: center;
   height: 100vh;
 }
 
@@ -26,24 +21,24 @@ div {
   height: 10%;
 }
 
-.log-output {
-  width: 100%;
-}
-
 .history {
   width: 60%;
+  border: 1px solid black;
 }
 
 .legend {
   width: 20%;
   min-width: 100px;
+  border: 1px solid black;
 }
 
 .mic-level {
   width: 20%;
   min-width: 100px;
+  border: 1px solid black;
 }
 
 .input {
   width: 100%;
+  border: 1px solid black;
 }

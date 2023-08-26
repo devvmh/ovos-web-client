@@ -4,15 +4,26 @@ import './LogOutput.css';
 
 function LogOutput() {
   const [data, setData] = useState([]);
-  const onNext = useCallback(async res => {
-    const text = await res.text();
-    console.log("got text: ", text);
-    setData(orig => [...orig, text]);
+  const onNext = useCallback(logFile => async response => {
+    const chunk = await response.text();
+    const logLines = chunk.split("\n")
+      .map(text => ({ logFile, text }))
+      .reverse();
+    setData(orig => [...logLines, ...orig]);
   }, [setData]);
-  useStream('/streams/logs', { onNext });
+  useStream('http://192.168.1.18:5000/streams/logs/audio', { onNext: onNext('audio') });
+  useStream('http://192.168.1.18:5000/streams/logs/ovos', { onNext: onNext('ovos') });
+  useStream('http://192.168.1.18:5000/streams/logs/phal', { onNext: onNext('phal') });
+  useStream('http://192.168.1.18:5000/streams/logs/skills', { onNext: onNext('skills') });
+  useStream('http://192.168.1.18:5000/streams/logs/voice', { onNext: onNext('voice') });
+
   return (
-    <div className="log-output">
-      {data.join("")}
+    <div className='log-output'>
+      {data.map((line, index) => {
+        return <div key={index} className={`log-line log-line-${line.logFile}`}>
+          {`${line.logFile}: ${line.text}`}
+        </div>
+      })}
     </div>
   );
 }

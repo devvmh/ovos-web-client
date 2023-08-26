@@ -1,4 +1,26 @@
 .log-output {
   width: 100%;
   overflow: scroll;
+  border: 1px solid black;
 }
+
+.log-line-audio {
+  color: orange;
+}
+
+.log-line-ovos {
+  color: black;
+}
+
+.log-line-phal {
+  color: green;
+}
+
+.log-line-skills {
+  color: purple;
+}
+
+.log-line-voice {
+  color: blue;
+}
+
