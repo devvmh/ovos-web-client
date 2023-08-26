@@ -1,0 +1,9 @@
+.legend {
+  width: 20%;
+  min-width: 100px;
+  border: 1px solid black;
+}
+
+.legend-item.selected {
+  font-weight: bold;
+}

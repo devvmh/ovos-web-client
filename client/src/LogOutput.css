@@ -1,26 +1,7 @@
 .log-output {
   width: 100%;
-  overflow: scroll;
   border: 1px solid black;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse; /* scroll from the bottom */
 }
-
-.log-line-audio {
-  color: orange;
-}
-
-.log-line-ovos {
-  color: black;
-}
-
-.log-line-phal {
-  color: green;
-}
-
-.log-line-skills {
-  color: purple;
-}
-
-.log-line-voice {
-  color: blue;
-}
-

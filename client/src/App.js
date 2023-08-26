@@ -1,19 +1,35 @@
-import LogOutput from './LogOutput'
+import {useState} from 'react';
+
+import Legend from './Legend';
+import LogOutput from './LogOutput';
+
 import './App.css';
 
+export const ALL_LOG_FILES = [
+  'audio', 'ovos', 'phal', 'skills', 'voice'
+];
+
 function App() {
+  const [logFiles, setLogFiles] = useState(ALL_LOG_FILES);
+
+  const toggleLogFile = logFile => event => {
+    if (logFiles.includes(logFile)) {
+      setLogFiles(orig => orig.filter(elt => elt !== logFile));
+    } else {
+      setLogFiles(orig => [...orig, logFile]);
+    }
+  }
+  
   return (
     <div className="App">
       <div className="row-1">
-        <LogOutput />
+        <LogOutput logFiles={logFiles} />
       </div>
       <div className="row-2">
         <div className="history">
           history
         </div>
-        <div className="legend">
-          legend
-        </div>
+        <Legend logFiles={logFiles} toggleLogFile={toggleLogFile} />
         <div className="mic-level">
           mic level
         </div>

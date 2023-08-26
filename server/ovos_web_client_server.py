@@ -30,6 +30,7 @@ def stream_logs(path):
     with open('{}/{}.log'.format(logs_folder, path)) as logfile:
       logfile.seek(0, os.SEEK_END)
       logfile.seek(logfile.tell() - 512, os.SEEK_SET)
+      logfile.readline() # clear off the first likely-truncated line
       while True:
         yield logfile.read()
   return app.response_class(generate(), mimetype='text/plain')
