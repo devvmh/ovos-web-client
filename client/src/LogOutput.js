@@ -7,6 +7,7 @@ function LogOutput() {
   const onNext = useCallback(logFile => async response => {
     const chunk = await response.text();
     const logLines = chunk.split("\n")
+      .filter(text => !!text) // filter out blank strings
       .map(text => ({ logFile, text }))
       .reverse();
     setData(orig => [...logLines, ...orig]);
