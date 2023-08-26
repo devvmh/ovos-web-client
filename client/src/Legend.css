@@ -2,6 +2,10 @@
   width: 20%;
   min-width: 100px;
   border: 1px solid black;
+
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
 }
 
 .legend-item.selected {

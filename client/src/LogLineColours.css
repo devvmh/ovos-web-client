@@ -1,5 +1,5 @@
 .log-line-audio {
-  color: orange;
+  color: darkorange; /* TODO find a higher contrast, distinct colour */
 }
 
 .log-line-ovos {
@@ -7,7 +7,7 @@
 }
 
 .log-line-phal {
-  color: green;
+  color: #006600; /* higher contrast green */
 }
 
 .log-line-skills {
