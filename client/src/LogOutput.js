@@ -11,7 +11,7 @@ function LogOutput(props) {
     const logLines = chunk.split("\n")
       .filter(text => !!text) // filter out blank strings
       .map(text => ({ logFile, text }));
-    setData(orig => [...orig, ...logLines]);
+    setData(orig => [...logLines, ...orig]);
   }, [props, setData]);
 
   useStream('/streams/logs/audio', { onNext: onNext('audio') });
