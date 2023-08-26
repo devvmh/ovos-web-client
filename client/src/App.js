@@ -1,13 +1,11 @@
-import logo from './logo.svg';
+import LogOutput from './LogOutput'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <div className="row-1">
-        <div className="log-output">
-          log output
-        </div>
+        <LogOutput />
       </div>
       <div className="row-2">
         <div className="history">
