@@ -2,6 +2,27 @@
   height: 100vh;
 }
 
+h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* for screen-reader-only elements */
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.visually-hidden:focus {
+  left: 20px;
+  width: auto;
+  height: auto;
+}
+
 .row-1,
 .row-2,
 .row-3 {

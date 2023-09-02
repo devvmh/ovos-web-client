@@ -15,8 +15,8 @@ function MicLevel() {
   const offset = -100 + percentage;
   return (
     <div className="mic-level">
-      Microphone level: {data}
-      <div className="meter" style={{ backgroundPositionY: `${offset}%` }} aria-label={data} />
+      <h2>Microphone level:</h2> {data}
+      <div className="meter" style={{ backgroundPositionY: `${offset}%` }} />
     </div>
   );
 }

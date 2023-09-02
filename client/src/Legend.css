@@ -8,6 +8,19 @@
   margin-top: 0;
 }
 
+.legend ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.legend li {
+  width: fit-content;
+}
+
+.legend input[type=checkbox] {
+  margin-right: 1em;
+}
+
 .legend-item.selected {
   font-weight: bold;
 }

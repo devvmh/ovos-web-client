@@ -28,14 +28,14 @@ function App() {
       </div>
       <div className="row-2">
         <div className="history">
-          history
+          <h2>history</h2>
         </div>
         <Legend logFiles={logFiles} toggleLogFile={toggleLogFile} />
         <MicLevel />
       </div>
       <div className="row-3">
         <div className="input">
-          input
+          <h2>input</h2>
         </div>
       </div>
     </div>

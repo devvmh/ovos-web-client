@@ -2,19 +2,35 @@ import './Legend.css';
 import './LogLineColours.css';
 
 function Legend(props) {
+  function isSelected(logFile) {
+    return props.logFiles.includes(logFile);
+  }
+
   function getClassName(logFile) {
-    const selected = props.logFiles.includes(logFile) ? 'selected' : '';
+    const selected = isSelected(logFile) ? 'selected' : '';
     return `legend-item log-line-${logFile} ${selected}`;
   }
 
+  function renderLine(logFile) {
+    return (
+      <li className={getClassName(logFile)} onClick={props.toggleLogFile(logFile)}>
+        <input type="checkbox" name={logFile} checked={isSelected(logFile)} />
+        <label htmlFor={logFile}>{logFile}</label>
+      </li>
+    );
+  }
+
   return (
-    <ul className='legend'>
-      <li onClick={props.toggleLogFile('audio')} className={getClassName('audio')}>audio</li>
-      <li onClick={props.toggleLogFile('ovos')} className={getClassName('ovos')}>ovos</li>
-      <li onClick={props.toggleLogFile('phal')} className={getClassName('phal')}>phal</li>
-      <li onClick={props.toggleLogFile('skills')} className={getClassName('skills')}>skills</li>
-      <li onClick={props.toggleLogFile('voice')} className={getClassName('voice')}>voice</li>
-    </ul>
+    <div className='legend'>
+      <h2>Legend</h2>
+      <ul>
+        {renderLine('audio')}
+        {renderLine('ovos')}
+        {renderLine('phal')}
+        {renderLine('skills')}
+        {renderLine('voice')}
+      </ul>
+    </div>
   );
 }
 

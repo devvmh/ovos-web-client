@@ -22,6 +22,7 @@ function LogOutput(props) {
 
   return (
     <div className='log-output'>
+      <h2 className="visually-hidden">Logs</h2>
       {data.filter(line => props.logFiles.includes(line.logFile)).map((line, index) => {
         return <div key={index} className={`log-line log-line-${line.logFile}`}>
           {line.text}
