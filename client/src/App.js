@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 import Legend from './Legend';
 import LogOutput from './LogOutput';
+import MicLevel from './MicLevel';
 
 import './App.css';
 
@@ -30,9 +31,7 @@ function App() {
           history
         </div>
         <Legend logFiles={logFiles} toggleLogFile={toggleLogFile} />
-        <div className="mic-level">
-          mic level
-        </div>
+        <MicLevel />
       </div>
       <div className="row-3">
         <div className="input">

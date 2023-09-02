@@ -12,7 +12,7 @@ function LogOutput(props) {
       .filter(text => !!text) // filter out blank strings
       .map(text => ({ logFile, text }));
     setData(orig => [...logLines, ...orig]);
-  }, [props, setData]);
+  }, [setData]);
 
   useStream('/streams/logs/audio', { onNext: onNext('audio') });
   useStream('/streams/logs/ovos', { onNext: onNext('ovos') });

@@ -1,5 +1,7 @@
-import os
+import os, signal, pydub
 from flask import Flask, send_from_directory
+from soundmeter.meter import Meter
+from soundmeter.settings import Config
 
 static_folder = '../client/build'
 logs_folder = os.environ.get('LOGS_FOLDER')
@@ -22,6 +24,21 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/streams/miclevel')
+def stream_miclevel():
+  def generate():
+    soundmeter = Meter()
+    config = Config(None)
+    soundmeter.num_frames = int(config.RATE / config.FRAMES_PER_BUFFER * config.AUDIO_SEGMENT_LENGTH)
+    record = soundmeter.record()
+    while True:
+      record.send(True)
+      data = soundmeter.output.getvalue()
+      segment = pydub.AudioSegment(data)
+      yield str(segment.rms)
+    print("exiting miclevel...")
+  return app.response_class(generate(), mimetype='text/plain')
+
 @app.route('/streams/logs/<path:path>')
 def stream_logs(path):
   if path not in ALLOWED_LOG_PATHS: 
@@ -33,7 +50,13 @@ def stream_logs(path):
       logfile.readline() # clear off the first likely-truncated line
       while True:
         yield logfile.read()
+      print("exiting " + path)
   return app.response_class(generate(), mimetype='text/plain')
 
+# fix Ctrl+C, which is broken by soundmeter https://github.com/shichao-an/soundmeter/issues/36
+def sigint_handler(signum, frame):
+  raise KeyboardInterrupt
+signal.signal(signal.SIGINT, sigint_handler)
+
 if __name__ == '__main__':
-    app.run(use_reloader=True, threaded=True)
+  app.run(use_reloader=True, threaded=True)
