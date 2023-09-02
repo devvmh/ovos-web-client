@@ -16,6 +16,11 @@ ALLOWED_LOG_PATHS = [
 
 app = Flask(__name__, static_folder=static_folder)
 
+soundmeter = Meter()
+soundmeter_config = Config(None)
+soundmeter.num_frames = int(soundmeter_config.RATE / soundmeter_config.FRAMES_PER_BUFFER * soundmeter_config.AUDIO_SEGMENT_LENGTH)
+soundmeter_record = soundmeter.record()
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
@@ -27,12 +32,8 @@ def serve(path):
 @app.route('/streams/miclevel')
 def stream_miclevel():
   def generate():
-    soundmeter = Meter()
-    config = Config(None)
-    soundmeter.num_frames = int(config.RATE / config.FRAMES_PER_BUFFER * config.AUDIO_SEGMENT_LENGTH)
-    record = soundmeter.record()
     while True:
-      record.send(True)
+      soundmeter_record.send(True)
       data = soundmeter.output.getvalue()
       segment = pydub.AudioSegment(data)
       yield str(segment.rms)
