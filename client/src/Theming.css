@@ -1,0 +1,22 @@
+:root {
+  --background-colour: white;
+  --foreground-colour: black;
+
+  --foreground-colour-two: darkorange; /* TODO find a higher contrast, distinct colour */
+  --foreground-colour-three: #006600; /* higher contrast green */
+  --foreground-colour-four: purple;
+  --foreground-colour-five: blue;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-colour: black;
+    --foreground-colour: white;
+
+    --foreground-colour-two: orange;
+    --foreground-colour-three: lightgreen;
+    --foreground-colour-four: plum;
+    --foreground-colour-five: lightblue;
+  }
+}
+

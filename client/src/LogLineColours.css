@@ -1,20 +1,20 @@
+
 .log-line-audio {
-  color: darkorange; /* TODO find a higher contrast, distinct colour */
+  color: var(--foreground-colour);
 }
 
 .log-line-ovos {
-  color: black;
+  color: var(--foreground-colour-two);
 }
 
 .log-line-phal {
-  color: #006600; /* higher contrast green */
+  color: var(--foreground-colour-three);
 }
 
 .log-line-skills {
-  color: purple;
+  color: var(--foreground-colour-four);
 }
 
 .log-line-voice {
-  color: blue;
+  color: var(--foreground-colour-five);
 }
-

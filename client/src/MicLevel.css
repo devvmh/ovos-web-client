@@ -1,7 +1,7 @@
 .mic-level {
   width: 20%;
   min-width: 100px;
-  border: 1px solid black;
+  border: 1px solid var(--foreground-colour);
 }
 
 .mic-level h2 {
@@ -13,7 +13,7 @@
   height: 8em;
   margin-left: 4em;
 
-  border: 1px solid black;
+  border: 1px solid var(--foreground-colour);
   border-radius: 0.6em;
 
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAABg2lDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TRS0VBzMUcchQneyiIo61CkWoEGqFVh1MLv2CJi1Jiouj4Fpw8GOx6uDirKuDqyAIfoC4ujgpukiJ/0sKLWI8OO7Hu3uPu3eA0Kww3eqJA7phm+lkQsrmVqW+VwxAgIgIQgqzanOynILv+LpHgK93MZ7lf+7PMajlLQYEJOI4q5k28QbxzKZd47xPLLKSohGfE0+YdEHiR66rHr9xLros8EzRzKTniUViqdjFahezkqkTTxNHNd2gfCHrscZ5i7NeqbP2PfkLw3ljZZnrNEeRxCKWIEOCijrKqMBGjFaDFAtp2k/4+Edcv0wulVxlMHIsoAodiusH/4Pf3VqFqUkvKZwAel8c52MM6NsFWg3H+T52nNYJEHwGroyOv9oEZj9Jb3S06BEwtA1cXHc0dQ+43AEiTzXFVFwpSFMoFID3M/qmHDB8C4TWvN7a+zh9ADLUVeoGODgExouUve7z7v7u3v490+7vBz21cpGPHiCqAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH5wkCFBktpXzVoQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAVSURBVBjTY1x74xkDbsDEgBeMVGkA9fMCf0p5XdkAAAAASUVORK5CYII=");

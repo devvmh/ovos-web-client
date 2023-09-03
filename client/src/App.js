@@ -4,6 +4,7 @@ import Legend from './Legend';
 import LogOutput from './LogOutput';
 import MicLevel from './MicLevel';
 
+import './Theming.css';
 import './App.css';
 
 export const ALL_LOG_FILES = [
