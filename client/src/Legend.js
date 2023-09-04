@@ -14,7 +14,7 @@ function Legend(props) {
   function renderLine(logFile) {
     return (
       <li className={getClassName(logFile)} onClick={props.toggleLogFile(logFile)}>
-        <input type="checkbox" name={logFile} checked={isSelected(logFile)} />
+        <input type="checkbox" name={logFile} checked={isSelected(logFile)} onChange={props.toggleLogFile(logFile)} />
         <label htmlFor={logFile}>{logFile}</label>
       </li>
     );
