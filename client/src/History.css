@@ -1,4 +1,7 @@
 .history {
   width: 60%;
   border: 1px solid var(--foreground-colour);
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse; /* scroll from the bottom */
 }

@@ -10,6 +10,7 @@ function LogOutput(props) {
     const chunk = await response.text();
     const logLines = chunk.split("\n")
       .filter(text => !!text) // filter out blank strings
+      .toReversed()
       .map(text => ({ logFile, text }));
     setData(orig => [...logLines, ...orig]);
   }, [setData]);
@@ -22,12 +23,12 @@ function LogOutput(props) {
 
   return (
     <div className='log-output'>
-      <h2 className="visually-hidden">Logs</h2>
       {data.filter(line => props.logFiles.includes(line.logFile)).map((line, index) => {
         return <div key={index} className={`log-line log-line-${line.logFile}`}>
           {line.text}
         </div>
       })}
+      <h2 className="visually-hidden">Logs</h2>
     </div>
   );
 }
