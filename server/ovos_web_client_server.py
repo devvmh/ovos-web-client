@@ -1,7 +1,9 @@
-import os, signal, pydub
+import os, pydub, signal, time
+
 from flask import Flask, send_from_directory
-from soundmeter.meter import Meter
-from soundmeter.settings import Config
+
+from .bus_handlers import WebClientBusInterface
+from .sound_utils import get_soundmeter
 
 static_folder = '../client/build'
 logs_folder = os.environ.get('LOGS_FOLDER')
@@ -15,10 +17,8 @@ ALLOWED_LOG_PATHS = [
 ]
 
 app = Flask(__name__, static_folder=static_folder)
-
-soundmeter = Meter()
-soundmeter_config = Config(None)
-soundmeter.num_frames = int(soundmeter_config.RATE / soundmeter_config.FRAMES_PER_BUFFER * soundmeter_config.AUDIO_SEGMENT_LENGTH)
+bus_interface = WebClientBusInterface()
+soundmeter = get_soundmeter()
 soundmeter_record = soundmeter.record()
 
 @app.route('/', defaults={'path': ''})
@@ -28,17 +28,6 @@ def serve(path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/streams/miclevel')
-def stream_miclevel():
-  def generate():
-    while True:
-      soundmeter_record.send(True)
-      data = soundmeter.output.getvalue()
-      segment = pydub.AudioSegment(data)
-      yield str(segment.rms)
-    print("exiting miclevel...")
-  return app.response_class(generate(), mimetype='text/plain')
 
 @app.route('/streams/logs/<path:path>')
 def stream_logs(path):
@@ -52,6 +41,29 @@ def stream_logs(path):
       while True:
         yield logfile.read()
       print("exiting " + path)
+  return app.response_class(generate(), mimetype='text/plain')
+
+@app.route('/streams/miclevel')
+def stream_miclevel():
+  def generate():
+    while True:
+      soundmeter_record.send(True)
+      data = soundmeter.output.getvalue()
+      segment = pydub.AudioSegment(data)
+      yield str(segment.rms)
+  return app.response_class(generate(), mimetype='text/plain')
+
+@app.route('/streams/history')
+def stream_history():
+  def generate():
+    index = 0
+    while True:
+      history = bus_interface.get_history()
+      if len(history) > index:
+        yield history[index]
+        index += 1
+      else:
+        time.sleep(1)
   return app.response_class(generate(), mimetype='text/plain')
 
 # fix Ctrl+C, which is broken by soundmeter https://github.com/shichao-an/soundmeter/issues/36

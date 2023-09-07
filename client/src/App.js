@@ -1,5 +1,6 @@
 import {useState} from 'react';
 
+import History from './History';
 import Legend from './Legend';
 import LogOutput from './LogOutput';
 import MicLevel from './MicLevel';
@@ -28,9 +29,7 @@ function App() {
         <LogOutput logFiles={logFiles} />
       </div>
       <div className="row-2">
-        <div className="history">
-          <h2>history</h2>
-        </div>
+        <History />
         <Legend logFiles={logFiles} toggleLogFile={toggleLogFile} />
         <MicLevel />
       </div>

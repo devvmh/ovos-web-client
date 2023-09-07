@@ -7,7 +7,7 @@
 h2 {
   margin: 0;
   font-size: 1em;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 /* for screen-reader-only elements */
@@ -42,11 +42,6 @@ h2 {
 
 .row-3 {
   height: 10%;
-}
-
-.history {
-  width: 60%;
-  border: 1px solid var(--foreground-colour);
 }
 
 .input {
