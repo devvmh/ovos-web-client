@@ -1,8 +1,8 @@
 import os, pydub, signal, time
 
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request, Response
 
-from .bus_handlers import WebClientBusInterface
+from .bus_interface import WebClientBusInterface
 from .sound_utils import get_soundmeter
 
 static_folder = '../client/build'
@@ -65,6 +65,12 @@ def stream_history():
       else:
         time.sleep(1)
   return app.response_class(generate(), mimetype='text/plain')
+
+@app.route('/submit/input')
+def submit_input():
+  input = request.args.get('input')
+  bus_interface.submit_input(input)
+  return Response(status=201)
 
 # fix Ctrl+C, which is broken by soundmeter https://github.com/shichao-an/soundmeter/issues/36
 def sigint_handler(signum, frame):

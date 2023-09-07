@@ -43,8 +43,3 @@ h2 {
 .row-3 {
   height: 10%;
 }
-
-.input {
-  width: 100%;
-  border: 1px solid var(--foreground-colour);
-}

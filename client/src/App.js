@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 import History from './History';
+import Input from './Input';
 import Legend from './Legend';
 import LogOutput from './LogOutput';
 import MicLevel from './MicLevel';
@@ -34,9 +35,7 @@ function App() {
         <MicLevel />
       </div>
       <div className="row-3">
-        <div className="input">
-          <h2>input</h2>
-        </div>
+        <Input />
       </div>
     </div>
   );

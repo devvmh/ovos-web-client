@@ -2,6 +2,10 @@
 
 Intended to be a replacement for mycroft-cli-client and ovos-cli-client but built for 
 
+## Security note
+
+If you run this server, it will open up your message bus to the internet. If you don't have a firewall, this is yet another security risk that can allow attackers to send arbitrary commands to your Mycroft. Use at your own risk, or comment out the submit_input function!
+
 ## Running in production
 
 Not ready yet!

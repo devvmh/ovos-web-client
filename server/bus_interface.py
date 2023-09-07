@@ -25,3 +25,17 @@ class WebClientBusInterface:
 
   def get_history(self):
     return self.history
+
+  def submit_input(self, input):
+    """user sent text from the web client input panel"""
+    self.bus.emit(Message("recognizer_loop:utterance", 
+      {
+        'utterances': [input.strip()],
+        'lang': 'en-us' # TODO: config.get('lang', 'en-us')
+      },
+      {
+        'client_name': 'ovos_web_client',
+        'source': 'web_client',
+        'destination': ["skills"]
+      }
+    ))
