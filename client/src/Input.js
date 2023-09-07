@@ -5,8 +5,8 @@ import './Input.css';
 function Input() {
   const [data, setData] = useState('');
 
-  function submit() {
-    console.log("starting submit...")
+  function submit(event) {
+    event.preventDefault();
     fetch(`/submit/input?input=${data}`)
       .then(response => {
         if (!response.ok) {
@@ -22,8 +22,10 @@ function Input() {
   return (
     <div className='input'>
       <h2>Input</h2>
-      <input type="text" className="text-input-field" onChange={e => setData(e.target.value)} value={data} />
-      <button onClick={submit}>Submit</button>
+      <form onSubmit={submit}>
+        <input type='text' className='text-input-field' onChange={e => setData(e.target.value)} value={data} />
+        <button type='submit'>Submit</button>
+      </form>
     </div>
   );
 }
